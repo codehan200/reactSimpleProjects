@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Create KM to Miles converter -->
+
+  <script type="text/babel">
+    const Container = () => {
+      const [miles, setMiles] = React.useState(0);
+      const [kilometer, setkilometer] = React.useState(0);
+
+      const onMileChange = (event) => {
+        setMiles((prev) => event.target.value);
+        setkilometer((prev) => event.target.value * 1.6);
+      };
+      const onKilometerChange = (event) => {
+        setkilometer((prev) => event.target.value);
+        setMiles((prev) => event.target.value / 1.6);
+      };
+
+      return (
+        <div>
+          <h1>Distance Measure Converter</h1>
+          <label htmlFor="miles">Miles: </label>
+          <input
+            id="milesInput"
+            type="number"
+            placeholder="Enter Miles here"
+            value={miles}
+            onChange={onMileChange}
+          />
+          <br />
+          <br />
+          <label htmlFor="km">KM: </label>
+          <input
+            id="kmInput"
+            type="number"
+            placeholder="Enter KM here"
+            value={kilometer}
+            onChange={onKilometerChange}
+          />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Container />, root);
+  </script>
+</html>
